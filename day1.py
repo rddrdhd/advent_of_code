@@ -1,20 +1,18 @@
 # Using readlines()
-file1 = open('day1_data.txt', 'r')
-Lines = file1.readlines()
- 
+file = open('day1_data.txt', 'r')
+Lines = file.readlines()
+sliding_window_size = 3
 count = 0
-last_line = ""
-
-for line in Lines:
-    current_line = line.strip()
-    if last_line != "":
-        if int(last_line) < int(current_line):
-            count+=1
-            #print("{} < {} (Increased)".format(last_line, current_line))
-        else:
-            print("{} >= {} (Decreased)".format(last_line, current_line))
-    else:
-        print("no last line")
-    last_line = current_line
-
-print(count) # 1715
+last_window = []
+current_window = []
+iterations = range(0,int(len(Lines)-(sliding_window_size)))
+for i in iterations:
+    current_window = [int(Lines[i]),int(Lines[i+1]),int(Lines[i+2])]
+    if(sum(current_window) > sum(last_window)):
+        count+=1
+        #debug prints for start and end
+        if(i < 5 or i > 1995):
+            print(current_window)
+            print("{}>{}".format(sum(current_window) , sum(last_window)))
+    last_window = current_window
+print("count:",count)
