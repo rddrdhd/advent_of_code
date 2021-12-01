@@ -17,4 +17,4 @@ for line in Lines:
         print("no last line")
     last_line = current_line
 
-print(count) # 1713: your answer is too low.
+print(count) # 1715
