@@ -1,8 +1,8 @@
 # Task: https://adventofcode.com/2021/day/1
+
 f = open('data/day1.txt', 'r')
 lines = f.readlines()
 f.close()
-
 
 def part1():
     count = 0
@@ -21,6 +21,7 @@ def part1():
 def part2():
     count = 0
     last_sum = 0
+
     window_size = 3
     current_window = []
 
