@@ -1,5 +1,4 @@
 import sys
-from typing import Match
 from datetime import datetime
 
 
@@ -27,6 +26,10 @@ if __name__ == "__main__":
             from y2020 import day2
             print("02.12.2020 - Results:\t\t{},\t{}".format( day2.part1(), day2.part2() ))
 
+
+        if 3 in args :
+            from y2020 import day3
+            print("03.12.2020 - Results:\t\t{},\t{}".format( day3.part1(), day3.part2() ))
 
 
     elif max(args) > today :

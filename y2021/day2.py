@@ -16,7 +16,7 @@ def part1():
             depth -= int(value)
         if command == "forward":
             distance += int(value)
-    return depth * distance
+    return depth * distance  # 1654760
 
 
 def part2():
@@ -32,4 +32,4 @@ def part2():
         if command == "forward":
             distance += int(value)
             depth += int(aim) * int(value)
-    return depth * distance
+    return depth * distance  # 1956047400
