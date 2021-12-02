@@ -4,6 +4,7 @@ from datetime import datetime
 
 
 if __name__ == "__main__":
+    print("")
     args = list(map(int, sys.argv[1:]))
     args.sort()
 
@@ -27,6 +28,7 @@ if __name__ == "__main__":
             print("02.12.2020 - Results:\t\t{},\t{}".format( day2.part1(), day2.part2() ))
 
 
+
     elif max(args) > today :
         print("Realy? {}? This task is not out yet...".format( max(args) ))
 
@@ -34,8 +36,8 @@ if __name__ == "__main__":
 
         if 1 in args :
             from y2021 import day1
-            print("01.12.2021- - Results:\t\t{},\t{}".format( day1.part1(), day1.part2() ))
+            print("01.12.2021 - Results:\t\t{},\t{}".format( day1.part1(), day1.part2() ))
 
-        #if 2 in args :
-            #import day2 as d2
-            #print("02.12- - Result:\t\t\t", d2.part1() )
+        if 2 in args :
+            from y2021 import day2
+            print("02.12.2021 - Results:\t\t{},\t{}".format( day2.part1(), day2.part2() ))
