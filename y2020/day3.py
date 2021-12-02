@@ -4,9 +4,8 @@ f = open('y2020/data/day3.txt', 'r')
 lines = f.readlines()
 f.close()
 
-def part1():
-    offset_right = 3
-    offset_down = 1
+
+def part1(offset_right=3, offset_down=1):
     count = 0
     x = offset_right
     y = offset_down
@@ -21,4 +20,4 @@ def part1():
 
 
 def part2():
-    return 0
+    return part1(1, 1) * part1(3, 1) * part1(5, 1) * part1(7, 1) * part1(1, 2)
