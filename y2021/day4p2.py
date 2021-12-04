@@ -54,7 +54,6 @@ def get_last_bingo_board(bingo_boards, bingo_boards_marks, numbers):
                     boards_won[b_id] = True
                     if False not in boards_won:
                         return current_board, current_board_marks, current_number
-    return current_board, current_board_marks, current_number
 
 
 def part2():
