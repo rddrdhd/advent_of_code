@@ -5,27 +5,33 @@ lines = f.readlines()
 f.close()
 
 
+def is_this_bingo(board, number):
+    # check bingos
+    for line in board:
+        if line == ['X', 'X', 'X', 'X', 'X']:
+            # print("ROW BINGO")
+            return board, number
+
+    for column in range(len(board[0])):
+        bing_col = []
+        for line in board:
+            bing_col.append(line[column])
+        if bing_col == ['X', 'X', 'X', 'X', 'X']:
+            # print("COL BINGO")
+            return board, number
+
+
 def get_first_bingo_board(bingo_boards, numbers):
     for number in numbers:
         for board in bingo_boards:
             # mark numbers
             for l, line in enumerate(board):
                 if number in line:
-                    line = ["X" if x == number else x for x in line]
+                    line = ["X" if x == number else x for x in line]  # replace number with X
                     board[l] = line
         for b, board in enumerate(bingo_boards):
-
-            # check bingos
-            for line in board:
-                if line == ['X', 'X', 'X', 'X', 'X']:
-                    return board, number
-
-            for column in range(len(board[0])):
-                bing_col = []
-                for line in board:
-                    bing_col.append(line[column])
-                if bing_col == ['X', 'X', 'X', 'X', 'X']:
-                    return board, number
+            if is_this_bingo(board, number):
+                return board, number
 
 
 def part1():
@@ -52,8 +58,3 @@ def part1():
                 winner_board_sum += int(col)
 
     return int(winner_board_sum) * int(winner_number)
-
-
-def part2():
-    count = 0
-    return count
