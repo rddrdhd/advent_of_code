@@ -1,7 +1,6 @@
 # https://adventofcode.com/2021/day/3
 
 f = open('y2021/data/day3.txt', 'r')
-#f = open('y2021/data/test.txt', 'r')
 lines = f.readlines()
 f.close()
 
@@ -11,9 +10,9 @@ def is_zero_most_common(lines, position, or_equal=True):
     for line in lines:
         if line[position] == "0":
             count += 1
-    if count < (len(lines)-count):
+    if count < (len(lines) - count):
         return True
-    elif count == (len(lines)-count):
+    elif count == (len(lines) - count):
         return or_equal
     return False
 
@@ -24,9 +23,10 @@ def part1():
     consumption_rate = ""
 
     for column in range(row_length):
-        gamma_rate += "0" if is_zero_most_common(lines,column,False) else "1"
-        consumption_rate += "1" if is_zero_most_common(lines,column,True) else "0"
+        gamma_rate += "0" if is_zero_most_common(lines, column, False) else "1"
+        consumption_rate += "1" if is_zero_most_common(lines, column, True) else "0"
     return int(gamma_rate, 2) * int(consumption_rate, 2)
+
 
 def part2():
     oxygen = lines
@@ -68,5 +68,4 @@ def part2():
 
         if len(co2) == 1:
             co2_rating = int(co2[0], 2)
-    return int(oxygen_rating)*int(co2_rating) #  3765399
-
+    return int(oxygen_rating) * int(co2_rating)  # 3765399

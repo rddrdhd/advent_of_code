@@ -1,5 +1,4 @@
 # Task: https://adventofcode.com/2020/day/4
-import re
 
 f = open('y2020/data/day4.txt', mode='r')
 lines = f.read().split('\n\n')
@@ -22,6 +21,7 @@ def part1():
 
     return valid  # 230
 
+
 def part2():
     count = 0
     passport = {}
@@ -33,7 +33,6 @@ def part2():
         else:
             line = line.replace("\n", " ").split(" ")
             for pair in line:
-
                 key, value = pair.split(":")
                 passport[key] = value
 
@@ -60,7 +59,7 @@ def part2():
                 hgt = False
 
             if all((byr, iyr, eyr, hgt, hcl, ecl, pid)):
-                print("valid pass:", passport) #
+                print("valid pass:", passport)  #
                 count += 1
 
         except (KeyError, ValueError):  # Something isn't there

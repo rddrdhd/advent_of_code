@@ -42,8 +42,8 @@ if __name__ == "__main__":
 
             print("05.12.2020 - Results:\t\t{},\t{}".format(day5.part1(), day5.part2()))
 
-    elif max(args) > today:
-        print("{}? NOPE...".format(max(args)))
+        elif max(args) > today:
+            print("NOPE...".format(max(args)))
 
     else:
 
@@ -72,3 +72,6 @@ if __name__ == "__main__":
             from y2021 import day5
 
             print("05.12.2021 - Results:\t\t{},\t{}".format(day5.part1(), day5.part2()))
+
+        elif max(args) > today:
+            print("NOPE...".format(max(args)))
