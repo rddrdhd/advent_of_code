@@ -50,7 +50,12 @@ if __name__ == "__main__":
         if 3 in args :
             from y2021 import day3
             print("03.12.2021 - Results:\t\t{},\t{}".format( day3.part1(), day3.part2() ))
+
         if 4 in args :
             from y2021 import day4p1
             from y2021 import day4p2
             print("04.12.2021 - Results:\t\t{},\t{}".format( day4p1.part1(), day4p2.part2() ))
+
+        if 5 in args :
+            from y2021 import day5
+            print("05.12.2021 - Results:\t\t{},\t{}".format( day5.part1(), day5.part2() ))
