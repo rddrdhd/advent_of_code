@@ -22,62 +22,48 @@ def part1():
 
     return valid  # 230
 
-
-def validate(data):
-    valid = True
-    for d in data:
-        key, value = d.split(":")
-        if key == "byr":  # 1920-2002
-            if int(value) < 1920: valid = False
-            elif int(value) > 2002: valid = False
-        elif key == "iyr":  # 2010-2020
-            if int(value) < 2010: valid = False
-            elif int(value) > 2020: valid = False
-        elif key == "eyr":  # 2020-2030
-            if int(value) < 2020: valid = False
-            elif int(value) > 2030: valid = False
-        elif key == "hgt":  # has to ends with "cm" or "in"
-            if value[-2:] == "cm":  # 150-193
-                if int(value[:-2]) < 150: valid = False
-                elif int(value[:-2]) > 193: valid = False
-            elif value[-2:] == "in":  # 59-76
-                if int(value[:-2]) < 59: valid = False
-                elif int(value[:-2]) > 76: valid = False
-        elif key == "hcl":
-            if not re.search(r'^#(?:[0-9a-fA-F]{3}){1,2}$', value): valid = False
-        elif key == "ecl":
-            if value not in ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]: valid = False
-
-        elif key == "pid":
-            if not re.search("[0-9]{9}", value):
-                valid = False
-            else:
-                print(key, value, valid)
-
-                TODOOO
-
-        elif key == "cid":
-            valid = True
-        else:
-            valid = False
-
-    return valid  # 158 too high
-
-
 def part2():
-    valid = 0
+    count = 0
+    passport = {}
+    passports = []
     for line in lines:
-        data = line.replace("\n", " ").split(" ")
-        this_line_keys = []
-        if len(data) == 8:
-            if validate(data):
-                valid += 1
-        elif len(data) == 7:
-            for l in data:
-                key, value = l.strip().split(":")
-                this_line_keys.append(key)
-            if "cid" not in this_line_keys:
-                if validate(data) :
-                    valid += 1
+        if len(line) == 0:
+            passports.append(passport)
+            passport = {}
+        else:
+            line = line.replace("\n", " ").split(" ")
+            for pair in line:
 
-    return valid  # 230
+                key, value = pair.split(":")
+                passport[key] = value
+
+        try:
+            byr = 2002 >= int(passport["byr"]) >= 1920
+            iyr = 2020 >= int(passport["iyr"]) >= 2010
+            eyr = 2030 >= int(passport["eyr"]) >= 2020
+            hcl = passport["hcl"].startswith("#") and len(passport["hcl"]) == 7
+            ecl = passport["ecl"] in ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]
+            pid = len(passport["pid"]) == 9 and passport["pid"].isnumeric()
+
+            # Throw ValueError if not in correct format
+            set(passport["hcl"][1:]).issubset(set('0123456789abcdef'))  # Convert to int from hex
+
+            # hgt checks
+            height = int(passport["hgt"][:-2])
+            if passport["hgt"].endswith("cm"):
+                hgt = 193 >= height >= 150
+
+            elif passport["hgt"].endswith("in"):
+                hgt = 76 >= height >= 59
+
+            else:
+                hgt = False
+
+            if all((byr, iyr, eyr, hgt, hcl, ecl, pid)):
+                print("valid pass:", passport) #
+                count += 1
+
+        except (KeyError, ValueError):  # Something isn't there
+            pass
+    # TODO: not working for my batch :(
+    return count  # < 187, not 171

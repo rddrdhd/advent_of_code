@@ -3,6 +3,7 @@ f = open('y2021/data/day4.txt', 'r')
 lines = f.readlines()
 f.close()
 
+
 def is_this_bingo_bool(board):
     for line in board:
         if line == [True, True, True, True, True]:
@@ -85,12 +86,12 @@ def part2():
             if not last_bingo_marks[row][col]:
                 last_board_sum += int(last_bingo_board[row][col])
 
-    #print("---\n", last_board_sum, "*", last_bingo_number)
+    # print("---\n", last_board_sum, "*", last_bingo_number)
     return int(last_board_sum) * int(last_bingo_number)
 
 # if you are reading this, I am so sorry for what I have done. Here is your reward for not running away:
 
-#print(""" Merry christmas from rddrdhd ;)
+# print(""" Merry christmas from rddrdhd ;)
 # .      *    *           *.       *   .                      *     .
 #                .   .                   __   *    .     * .     *
 #     *       *         *   .     .    _|__|_        *    __   .       *
@@ -99,4 +100,4 @@ def part2():
 #   *    /  \     /  \   .   *       _(__.__)_  _   ,--<(  . )>  .    .
 #       /    \   /    \          *   |       |  )),`   (   .  )     *
 #    *   `||` ..  `||`   . *.   ... ==========='`   ... '--`-` ... *
-#""")
+# """)

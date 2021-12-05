@@ -92,14 +92,14 @@ def part2():
             smaller_y = min(value[Y1], value[Y2])
             for y in range(smaller_y, bigger_y + 1):
                 diagram[y][value[X1]] += 1
-        if value[Y1] == value[Y2]:
+        elif value[Y1] == value[Y2]:
             bigger_x = max(value[X1], value[X2])
             smaller_x = min(value[X1], value[X2])
             for x in range(smaller_x, bigger_x + 1):
                 diagram[value[Y1]][x] += 1
 
         # add diagonal stuff
-        if abs(value[X1]-value[X2]) == abs(value[Y1]-value[Y2]):
+        elif abs(value[X1]-value[X2]) == abs(value[Y1]-value[Y2]):
 
             # make all coordinates left->right
             if value[X1] > value[X2]:
@@ -115,6 +115,8 @@ def part2():
             else:  # diagonal going up
                 for d in distance_range:
                     diagram[value[Y1] - d][value[X1] + d] += 1
+        else:
+            print("Error: The diagonal is not square")
 
     # sum the overlapping
     sum = 0
