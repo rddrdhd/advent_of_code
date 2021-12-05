@@ -4,6 +4,7 @@ f = open('y2020/data/day5.txt', 'r')
 lines = f.readlines()
 f.close()
 
+
 def get_half(command_bit, seat_ids):
     if len(seat_ids) == 1:
         return seat_ids
@@ -11,6 +12,7 @@ def get_half(command_bit, seat_ids):
         return seat_ids[len(seat_ids) // 2:]
     if command_bit == "F" or command_bit == "L":
         return seat_ids[:len(seat_ids) // 2]
+
 
 def get_seat_id(commands, last_row_number, number_of_columns):
     commands = commands.strip()
