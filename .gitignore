@@ -1,5 +1,5 @@
 __pycache__/
 .idea/
-y2020/data/test.txt
-y2021/data/test.txt
+*/data/test.txt
+y2021/dayX.py
 win_venv/
