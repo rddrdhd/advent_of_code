@@ -42,6 +42,11 @@ if __name__ == "__main__":
 
             print("05.12.2020 - Results:\t\t{},\t{}".format(day5.part1(), day5.part2()))
 
+        if 10 in args:
+            from y2020 import day10
+
+            print("10.12.2020 - Results:\t\t{},\t{}".format(day10.part1(), day10.part2()))
+
         elif max(args) > today:
             print("NOPE...".format(max(args)))
 
@@ -77,6 +82,11 @@ if __name__ == "__main__":
             from y2021 import day6
 
             print("06.12.2021 - Results:\t\t{},\t{}".format(day6.part1(), day6.part2()))
+
+        if 7 in args:
+            from y2021 import day7
+
+            print("07.12.2021 - Results:\t\t{},\t{}".format(day7.part1(), day7.part2()))
 
         elif max(args) > today:
             print("NOPE...".format(max(args)))
