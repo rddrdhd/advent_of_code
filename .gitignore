@@ -2,3 +2,4 @@ __pycache__/
 .idea/
 y2020/data/test.txt
 y2021/data/test.txt
+win_venv/
