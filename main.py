@@ -53,40 +53,45 @@ if __name__ == "__main__":
     else:
 
         if 1 in args:
-            from y2021 import day1
+            from y2021 import day1 as d
 
-            print("01.12.2021 - Results:\t\t{},\t{}".format(day1.part1(), day1.part2()))
+            print("01.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
 
         if 2 in args:
-            from y2021 import day2
+            from y2021 import day2 as d
 
-            print("02.12.2021 - Results:\t\t{},\t{}".format(day2.part1(), day2.part2()))
+            print("02.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
 
         if 3 in args:
-            from y2021 import day3
+            from y2021 import day3 as d
 
-            print("03.12.2021 - Results:\t\t{},\t{}".format(day3.part1(), day3.part2()))
+            print("03.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
 
         if 4 in args:
-            from y2021 import day4p1
-            from y2021 import day4p2
+            from y2021 import day4p1 as d1
+            from y2021 import day4p2 as d2
 
-            print("04.12.2021 - Results:\t\t{},\t{}".format(day4p1.part1(), day4p2.part2()))
+            print("04.12.2021 - Results:\t\t{},\t{}".format(d1.part1(), d2.part2()))
 
         if 5 in args:
-            from y2021 import day5
+            from y2021 import day5 as d
 
-            print("05.12.2021 - Results:\t\t{},\t{}".format(day5.part1(), day5.part2()))
+            print("05.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
 
         if 6 in args:
-            from y2021 import day6
+            from y2021 import day6 as d
 
-            print("06.12.2021 - Results:\t\t{},\t{}".format(day6.part1(), day6.part2()))
+            print("06.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
 
         if 7 in args:
-            from y2021 import day7
+            from y2021 import day7 as d
 
-            print("07.12.2021 - Results:\t\t{},\t{}".format(day7.part1(), day7.part2()))
+            print("07.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
+
+        if 8 in args:
+            from y2021 import day8 as d
+
+            print("07.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
 
         elif max(args) > today:
             print("NOPE...".format(max(args)))
