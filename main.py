@@ -8,7 +8,7 @@ if __name__ == "__main__":
 
     if len(args):
         if args[0] > 2019:
-            args = args[1:]
+            year = args.pop()
 
     today = datetime.now().day
 
