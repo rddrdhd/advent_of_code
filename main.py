@@ -91,7 +91,11 @@ if __name__ == "__main__":
         if 8 in args:
             from y2021 import day8 as d
 
-            print("07.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
+            print("08.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
+        if 9 in args:
+            from y2021 import day9 as d
+
+            print("09.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
 
         elif max(args) > today:
             print("NOPE...".format(max(args)))
