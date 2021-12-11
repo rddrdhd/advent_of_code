@@ -1,5 +1,5 @@
 # Task: https://adventofcode.com/2021/day/X
-f = open('y2021/data/day11.txt', 'r')
+f = open('y2021/data/test.txt', 'r')
 lines = f.readlines()
 lines = [s.strip() for s in lines]
 lines = [list(map(int, s)) for s in lines]
@@ -73,4 +73,27 @@ def part1(steps=100):
 
 
 def part2():
-    return 0
+    step_count = 0
+    synced = False
+    while not synced:
+        step_count += 1
+        flashes = []
+        # find first flashes in this step
+        for y in range(len(lines)):
+            for x in range(len(lines[0])):
+                energy_level = int(lines[y][x])
+                lines[y][x] = energy_level + 1
+                if int(lines[y][x]) > 9:
+                    lines[y][x] = 0
+                    flashes.append({'y': y, 'x': x})
+
+        while len(flashes):
+            flash = flashes.pop()
+            llines, _ = flash_flood(lines, flash['y'], flash['x'])
+            synced = True
+            for y in range(len(llines)):
+                for x in range(len(llines[0])):
+                    if llines[y][x] != 0:
+                        synced = False
+
+    return step_count # 329
