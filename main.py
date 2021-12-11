@@ -97,5 +97,15 @@ if __name__ == "__main__":
 
             print("09.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
 
-        elif max(args) > today:
+        if 10 in args:
+                from y2021 import day10 as d
+
+                print("10.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
+
+        if 11 in args:
+                from y2021 import day11 as d
+
+                print("11.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
+
+        if max(args) > today:
             print("NOPE...".format(max(args)))
