@@ -1,5 +1,5 @@
 # Task: https://adventofcode.com/2021/day/X
-f = open('y2021/data/test.txt', 'r')
+f = open('y2021/data/day11.txt', 'r')
 lines = f.readlines()
 lines = [s.strip() for s in lines]
 lines = [list(map(int, s)) for s in lines]
@@ -73,6 +73,11 @@ def part1(steps=100):
 
 
 def part2():
+    f = open('y2021/data/day11.txt', 'r')
+    lines = f.readlines()
+    lines = [s.strip() for s in lines]
+    lines = [list(map(int, s)) for s in lines]
+    f.close()
     step_count = 0
     synced = False
     while not synced:
