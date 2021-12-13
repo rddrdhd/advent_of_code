@@ -126,4 +126,3 @@ def part2():
                 sum += 1
 
     return sum  # 21373
-# 🍝

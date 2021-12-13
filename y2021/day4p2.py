@@ -89,9 +89,8 @@ def part2():
     # print("---\n", last_board_sum, "*", last_bingo_number)
     return int(last_board_sum) * int(last_bingo_number)
 
-# if you are reading this, I am so sorry for what I have done. Here is your reward for not running away:
+# if you are reading this, I am so sorry for what I have done. Here is your reward:
 
-# print(""" Merry christmas from rddrdhd ;)
 # .      *    *           *.       *   .                      *     .
 #                .   .                   __   *    .     * .     *
 #     *       *         *   .     .    _|__|_        *    __   .       *
@@ -100,4 +99,4 @@ def part2():
 #   *    /  \     /  \   .   *       _(__.__)_  _   ,--<(  . )>  .    .
 #       /    \   /    \          *   |       |  )),`   (   .  )     *
 #    *   `||` ..  `||`   . *.   ... ==========='`   ... '--`-` ... *
-# """)
+#
