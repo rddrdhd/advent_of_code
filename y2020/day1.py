@@ -11,7 +11,7 @@ def part1():
             line_1 = int(line1.strip())
             line_2 = int(line2.strip())
             if line_1 + line_2 == 2020:
-                return line_1 * line_2
+                return line_1 * line_2  # 840324
 
 
 def part2():
@@ -22,4 +22,4 @@ def part2():
                 line_2 = int(line2.strip())
                 line_3 = int(line3.strip())
                 if line_1 + line_2 + line_3 == 2020:
-                    return line_1 * line_2 * line_3
+                    return line_1 * line_2 * line_3  # 170098110

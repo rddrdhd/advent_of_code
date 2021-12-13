@@ -1,5 +1,4 @@
 # Task: https://adventofcode.com/2021/day/12
-# https://www.geeksforgeeks.org/generate-graph-using-dictionary-python/
 from collections import defaultdict
 
 f = open('y2021/data/day12.txt', 'r')
@@ -23,12 +22,16 @@ def get_all_paths(graph, start, end, path=[], repeats=False):
 
     for node in graph[start]:
         new_paths = []
+
         if node.isupper() or node not in path:
             new_paths += get_all_paths(graph, node, end, path, repeats)
+
         elif node.islower() and node in path and repeats and node not in ('start', 'end'):
             new_paths += get_all_paths(graph, node, end, path, False)
+
         for new_path in new_paths:
             paths.append(new_path)
+
     return paths
 
 

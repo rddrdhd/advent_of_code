@@ -1,13 +1,15 @@
 # Task: https://adventofcode.com/2021/day/6
 import copy
+
 f = open('y2021/data/day6.txt', 'r')
 lines = f.readlines()
 f.close()
 
+
 # Each day, a 0 becomes a 6 and adds a new 8.
 # while each other number decreases by 1 if it was present at the start of the day.
 
-def new_part1(days_to_count = 18):
+def new_part1(days_to_count=18):
     lanternfish_dtls = lines[0].strip().split(",")
     dtl_counter = [0 for _ in range(9)]
     for fish_dtgb in lanternfish_dtls:
@@ -21,11 +23,10 @@ def new_part1(days_to_count = 18):
             if day_to_give_birth == 0:
                 new_counter[6] += dtl[day_to_give_birth]
         days_to_count -= 1
-    return sum(new_counter)
+    return sum(new_counter)  # 345387
 
 
 def part1(days_to_count=80):
-
     lanternfish = lines[0].strip().split(",")
 
     for day in range(days_to_count):
@@ -38,10 +39,8 @@ def part1(days_to_count=80):
             lanternfish[fish_id] = fish_count
 
     count = len(lanternfish)
-    return count
-
+    return count  # 345387
 
 
 def part2(days_to_count=256):
-    return new_part1(256)
-
+    return new_part1(days_to_count)  # 1574445493136
