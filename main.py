@@ -16,6 +16,7 @@ if __name__ == "__main__":
         args.append(today)
 
     if max(args) == 2020:
+        args.pop()
 
         if 1 in args:
             from y2020 import day1
@@ -106,6 +107,16 @@ if __name__ == "__main__":
                 from y2021 import day11 as d
 
                 print("11.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
+
+        if 12 in args:
+                from y2021 import day12 as d
+
+                print("12.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
+
+        if 13 in args:
+                from y2021 import day13 as d
+
+                print("13.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
 
         if max(args) > today:
             print("NOPE...".format(max(args)))
