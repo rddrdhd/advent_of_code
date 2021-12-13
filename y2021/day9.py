@@ -27,7 +27,7 @@ def part1():
     return sum(risk_levels)  # 465
 
 
-def part2():  # I got lost in recursive flood, so here is a crazy non recursive way
+def part2():
     line_length = len(lines[0])
     height = len(lines)
     local_mins = []

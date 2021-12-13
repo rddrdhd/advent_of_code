@@ -25,7 +25,7 @@ def part1():
     for column in range(row_length):
         gamma_rate += "0" if is_zero_most_common(lines, column, False) else "1"
         consumption_rate += "1" if is_zero_most_common(lines, column, True) else "0"
-    return int(gamma_rate, 2) * int(consumption_rate, 2)
+    return int(gamma_rate, 2) * int(consumption_rate, 2)  # 3549854
 
 
 def part2():

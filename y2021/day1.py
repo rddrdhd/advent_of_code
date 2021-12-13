@@ -26,7 +26,7 @@ def part2():
     window_size = 3
     current_window = []
 
-    for i in range(0, len(lines) - (window_size)):  # range(0,2000-3)
+    for i in range(0, len(lines) - (window_size)):
         current_window = [int(lines[i + 0]),
                           int(lines[i + 1]),
                           int(lines[i + 2]), ]

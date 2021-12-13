@@ -30,18 +30,6 @@ def part1():
     return score_sum
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 def part2():
     brackets = {"open" : ['(', '[', '{', '<'],
                 "close": [')', ']', '}', '>'],

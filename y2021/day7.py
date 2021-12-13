@@ -1,5 +1,4 @@
 # Task: https://adventofcode.com/2021/day/7
-import numpy
 
 f = open('y2021/data/day7.txt', 'r')
 lines = f.readlines()

@@ -3,7 +3,7 @@ f = open('y2021/data/day13.txt', 'r')
 lines = f.readlines()
 f.close()
 lines = [s.strip() for s in lines]
-
+print("Wait for it...", end="\r")
 
 def get_data(lines):
     max_x = 0
@@ -91,4 +91,12 @@ def part2():
                 print(" ", end="")
         print()
 
-    return -1  # EPLGRULR
+    return None
+"""
+#### ###  #     ##  ###  #  # #    ###
+#    #  # #    #  # #  # #  # #    #  #
+###  #  # #    #    #  # #  # #    #  #
+#    ###  #    # ## ###  #  # #    ###
+#    #    #    #  # # #  #  # #    # #
+#### #    ####  ### #  #  ##  #### #  #
+"""

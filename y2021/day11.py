@@ -9,6 +9,7 @@ neighbour_coords = [{'y':-1, 'x': -1}, {'y':-1, 'x': 0}, {'y':-1, 'x': 1},
                     {'y': 0, 'x': -1}, {'y': 0, 'x': 1},
                     {'y': 1, 'x': -1}, {'y': 1, 'x': 0}, {'y': 1, 'x': 1}]
 
+
 def get_valid_neighbours(x, y, max_x, max_y):
     neighbours = []
     if y != 0:  # upper row
