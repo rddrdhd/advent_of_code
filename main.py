@@ -117,6 +117,10 @@ if __name__ == "__main__":
                 from y2021 import day13 as d
 
                 print("13.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
+        if 14 in args:
+            from y2021 import day14 as d
+
+            print("14.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
 
         if max(args) > today:
             print("NOPE...".format(max(args)))
