@@ -1,4 +1,4 @@
-# Task: https://adventofcode.com/2021/day/X
+# Task: https://adventofcode.com/2020/day/10
 from collections import defaultdict
 
 f = open('y2020/data/day10.txt', 'r')

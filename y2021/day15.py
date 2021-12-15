@@ -90,7 +90,6 @@ def cheapest_path_cost(grid):
 
 def part1():
     grid = get_grid(lines)
-
     return cheapest_path_cost(grid)  # 626
 
 

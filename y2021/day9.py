@@ -1,4 +1,4 @@
-# Task: https://adventofcode.com/2021/day/X
+# Task: https://adventofcode.com/2021/day/9
 from typing import List
 
 f = open('y2021/data/day9.txt', 'r')
