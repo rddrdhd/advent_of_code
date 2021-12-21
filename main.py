@@ -128,5 +128,15 @@ if __name__ == "__main__":
 
             print("15.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
 
+        if 16 in args:
+            from y2021 import day16 as d
+
+            print("16.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
+
+        if 20 in args:
+            from y2021 import day20 as d
+
+            print("20.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
+
         if max(args) > today:
             print("NOPE...".format(max(args)))
