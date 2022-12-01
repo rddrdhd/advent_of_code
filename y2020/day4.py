@@ -3,8 +3,6 @@
 f = open('y2020/data/day4.txt', mode='r')
 lines = f.read().split('\n\n')
 f.close()
-
-
 def part1():
     valid = 0
     for line in lines:
