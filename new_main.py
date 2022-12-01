@@ -13,7 +13,7 @@ if __name__ == "__main__":
 
     # parse args to get year and days to resolve
     if args:
-        if 2014 < max(args) < today.year:
+        if 2014 < max(args) <= today.year:
             solving_year = args.pop()
             solving_days = args
         if 0 < max(args) < 26 and 0 < min(args) < 26:
@@ -29,8 +29,12 @@ if __name__ == "__main__":
     for solving_day in solving_days:
         solving_date = str(solving_day).zfill(2)+".12."+str(solving_year)
         print(solving_date, end=' - ')
+
+        if solving_year == 2022:
+            solving_day = str(solving_day).zfill(2) # new naming
         try:
             a = importlib.import_module("y"+str(solving_year)+".day"+str(solving_day))
             print("Results:\t\t{},\t{}".format(a.part1(), a.part2()))
         except ModuleNotFoundError:
+
             print("This solution does not exist")

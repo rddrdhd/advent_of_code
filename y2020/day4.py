@@ -59,7 +59,7 @@ def part2():
                 hgt = False
 
             if all((byr, iyr, eyr, hgt, hcl, ecl, pid)):
-                print("valid pass:", passport)  #
+               # print("valid pass:", passport)  #
                 count += 1
 
         except (KeyError, ValueError):  # Something isn't there
