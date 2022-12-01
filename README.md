@@ -1,5 +1,6 @@
 # Advent of code challenge
-Run `python main.py 1 2` where `1` and `2` are days to solve. 
+Run `python3 new_main.py`
 
-
-- day `7` uses numpy
+Optional arguments:
+- [int] year (number between 2015 and this year)
+- [int] day(s) (numbers between 1 and 25), example)
