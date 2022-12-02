@@ -40,10 +40,6 @@ def part1():
 # X == loose
 # Y == draw
 # Z == win
-
-# WIP:
-def part2():
-# WIP:
 def part2():
     score = 0
     kamen = "A"
