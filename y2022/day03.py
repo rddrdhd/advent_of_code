@@ -29,15 +29,11 @@ def part2():
         f_third = lines[i]
         s_third = lines[i + 1]
         t_third = lines[i + 2]
-        found_char = ""
-        for j, char in enumerate(f_third):
-            if len(found_char): break
-            if f_third[j] in s_third:
-                for k in range(len(s_third)):
-                    if len(found_char): break
-                    if s_third[k] in t_third:
-                        found_char = char
-                        print(char)
-                        sum += priorities.rfind(char) + 1
+        for ch in f_third:
+            if ch in s_third and ch in t_third:
+                print(ch)
+                sum += priorities.rfind(ch) + 1
+                break
     # 2853 to neni
+    # 3572 too hign
     return sum
