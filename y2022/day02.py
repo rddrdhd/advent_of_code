@@ -6,8 +6,8 @@ lines = [s.strip() for s in lines]
 
 
 # A == X = Kamen (1 p)
-# B == Y = Papir (2p)
-# C == Z = Nuzky (3p)
+# B == Y = Papir (2 p)
+# C == Z = Nuzky (3 p)
 def part1():
     score = 0
     for line in lines:
@@ -40,25 +40,25 @@ def part1():
 # X == loose
 # Y == draw
 # Z == win
-
-# WIP:
 def part2():
     score = 0
     kamen = "A"
-    nuzky = "B"
-    papir = "C"
+    papir = "B"
+    nuzky = "C"
     prohra = "X"
     remiza = "Y"
     vyhra = "Z"
     for line in lines:
         round_score = 0
         opponent, result = (line.split())
-        if result == vyhra: round_score += 6
-        if result == remiza: round_score += 3
-        i_play_stone = (opponent == kamen and result == remiza) or (opponent == nuzky and result == vyhra) or (
-                opponent == papir and result == prohra)
-        i_play_scissors = (opponent == nuzky and result == remiza) or (opponent == papir and result == vyhra) or (
-                opponent == kamen and result == prohra)
+        
+        if result == vyhra:
+                round_score += 6
+        if result == remiza:
+                round_score += 3
+
+        i_play_stone = (opponent == kamen and result == remiza) or (opponent == nuzky and result == vyhra) or (opponent == papir and result == prohra)
+        i_play_scissors = (opponent == nuzky and result == remiza) or (opponent == papir and result == vyhra) or (opponent == kamen and result == prohra)
 
         if i_play_stone:
             round_score += 1
@@ -67,6 +67,5 @@ def part2():
         else: #i_play_paper
             round_score += 2
         score += round_score
-        print(round_score)
 
-    return score  # 4098 too low,  11958 too low
+    return score 
