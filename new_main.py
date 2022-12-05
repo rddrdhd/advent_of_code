@@ -44,6 +44,11 @@ if __name__ == "__main__":
 
         try:
             a = importlib.import_module("y" + str(solving_year) + ".day" + str(solving_day))
-            print("Results :\t\t{:13d},\t{:13d}".format(a.part1(), a.part2()))
+            p1 = a.part1()
+            p2 = a.part2()
+            try:
+                print("Results :\t\t{:13d},\t{:13d}".format(p1, p2))
+            except ValueError:
+                print("Results :\t\t", p1, ",\t", p2)
         except ModuleNotFoundError:
             print("\t\t\t This solution does not exist")
