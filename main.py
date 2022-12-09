@@ -1,142 +1,62 @@
+import importlib
 import sys
 from datetime import datetime
 
 if __name__ == "__main__":
-    print("")
     args = list(map(int, sys.argv[1:]))
     args.sort()
 
-    if len(args):
-        if args[0] > 2019:
-            year = args.pop()
+    # default: solve today puzzle
+    today = datetime.now()
+    solving_year = today.year
+    solving_days = [today.day]
 
-    today = datetime.now().day
+    # parse args to get year and days to resolve
+    if args:
+        # year existing in AoC
+        existing_year = 2014 < max(args) <= today.year
+        if existing_year:
+            solving_year = args.pop()
+            solving_days = args
+        elif max(args) > 25:
+            print(" Wrong arguments.")
+            exit()
 
-    if len(args) == 0:
-        args.append(today)
+        # days existing in AoC
+        before_christmas = 0 < max(args) < 26 and 0 < min(args) < 26
+        before_today = 0 < max(args) <= today.day and 0 < min(args) <= today.day
+        if (before_today and solving_year == today.year) or (before_christmas and solving_year != today.year):
+            solving_days = args
+        else:
+            print(" Wrong arguments.")
+            exit()
 
-    if max(args) == 2020:
-        args.pop()
+    # use only unique values
+    solving_days = list(set(solving_days))
 
-        if 1 in args:
-            from y2020 import day1
+    # import module and print
+    for solving_day in solving_days:
+        solving_date = str(solving_day).zfill(2) + ".12." + str(solving_year)
+        print(solving_date, end=' - ')
 
-            print("01.12.2020 - Results:\t\t{},\t{}".format(day1.part1(), day1.part2()))
+        if solving_year == 2022:
+            solving_day = str(solving_day).zfill(2)  # new naming
 
-        if 2 in args:
-            from y2020 import day2
-
-            print("02.12.2020 - Results:\t\t{},\t{}".format(day2.part1(), day2.part2()))
-
-        if 3 in args:
-            from y2020 import day3
-
-            print("03.12.2020 - Results:\t\t{},\t{}".format(day3.part1(), day3.part2()))
-
-        if 4 in args:
-            from y2020 import day4
-
-            print("04.12.2020 - Results:\t\t{},\t{}".format(day4.part1(), day4.part2()))
-
-        if 5 in args:
-            from y2020 import day5
-
-            print("05.12.2020 - Results:\t\t{},\t{}".format(day5.part1(), day5.part2()))
-
-        if 10 in args:
-            from y2020 import day10
-
-            print("10.12.2020 - Results:\t\t{},\t{}".format(day10.part1(), day10.part2()))
-
-        elif max(args) > today:
-            print("NOPE...".format(max(args)))
-
-    else:
-
-        if 1 in args:
-            from y2021 import day1 as d
-
-            print("01.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
-
-        if 2 in args:
-            from y2021 import day2 as d
-
-            print("02.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
-
-        if 3 in args:
-            from y2021 import day3 as d
-
-            print("03.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
-
-        if 4 in args:
-            from y2021 import day4p1 as d1
-            from y2021 import day4p2 as d2
-
-            print("04.12.2021 - Results:\t\t{},\t{}".format(d1.part1(), d2.part2()))
-
-        if 5 in args:
-            from y2021 import day5 as d
-
-            print("05.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
-
-        if 6 in args:
-            from y2021 import day6 as d
-
-            print("06.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
-
-        if 7 in args:
-            from y2021 import day7 as d
-
-            print("07.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
-
-        if 8 in args:
-            from y2021 import day8 as d
-
-            print("08.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
-        if 9 in args:
-            from y2021 import day9 as d
-
-            print("09.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
-
-        if 10 in args:
-                from y2021 import day10 as d
-
-                print("10.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
-
-        if 11 in args:
-                from y2021 import day11 as d
-
-                print("11.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
-
-        if 12 in args:
-                from y2021 import day12 as d
-
-                print("12.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
-
-        if 13 in args:
-                from y2021 import day13 as d
-
-                print("13.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
-
-        if 14 in args:
-            from y2021 import day14 as d
-
-            print("14.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
-
-        if 15 in args:
-            from y2021 import day15 as d
-
-            print("15.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
-
-        if 16 in args:
-            from y2021 import day16 as d
-
-            print("16.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
-
-        if 20 in args:
-            from y2021 import day20 as d
-
-            print("20.12.2021 - Results:\t\t{},\t{}".format(d.part1(), d.part2()))
-
-        if max(args) > today:
-            print("NOPE...".format(max(args)))
+        try:
+            a = importlib.import_module("y" + str(solving_year) + ".day" + str(solving_day))
+            p1 = a.part1()
+            p2 = a.part2()
+            try:
+                print("Results :\t\t{:13d},\t{:13d}".format(p1, p2))
+            except ValueError:
+                print("Results :\t\t", p1, ",\t", p2)
+        except ModuleNotFoundError:
+            if 4 in solving_days and solving_year == 2021:
+                # file splitted into p1 and p2
+                    a = importlib.import_module("y" + str(solving_year) + ".day" + str(solving_day)+"p1")
+                    b = importlib.import_module("y" + str(solving_year) + ".day" + str(solving_day)+"p2")
+                    p1 = a.part1()
+                    p2 = b.part2()
+                    print("Results :\t\t{:13d},\t{:13d}".format(p1, p2))
+            else:
+                print("\t\t\t This solution does not exist")
