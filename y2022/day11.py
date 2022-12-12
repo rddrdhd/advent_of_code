@@ -101,17 +101,46 @@ def part1():
     return monkeys_inspected[-1]*monkeys_inspected[-2]
 
 
-def part2():
+def part2():    
     monkeys = get_monkeys()
+    monkeys_inspected = [0 for m in range(len(monkeys))]
+    items = get_items(monkeys)
     round = 0
-    modulo_group = {}
-    modulo_number = 1
-    # WIP :(
-    for i, m in enumerate(monkeys):
-        monkeys[i]["inspected"] = len(monkeys[i]["starting items"])
-        monkeys[i]["modulo items"] = [0 for _ in range(len(monkeys))]
-        modulo_number *= int(monkeys[i]["test"])
-    for i in range(modulo_number):
-        modulo_group[i] = 0
-    #print(modulo_group)
-    return 0
+    m = 0
+    divisor = 1
+    for i in range(len(monkeys)):
+        divisor *= int(monkeys[i]["test"])
+    monkey_number = m % len(monkeys)
+    while round < 10000:
+        while True:
+            try:
+                item = items[monkey_number].pop(0)
+            except IndexError:
+                monkey_number += 1
+                continue
+            except KeyError:
+                monkey_number = 0
+                round += 1
+                break
+            stress_level = int(item)
+            if monkeys[monkey_number]["operation"][1] == "old":
+                if monkeys[monkey_number]["operation"][0] == "+":
+                    stress_level *= 2
+                elif monkeys[monkey_number]["operation"][0] == "*":
+                    stress_level *= stress_level
+            else:
+                if monkeys[monkey_number]["operation"][0] == "+":
+                    stress_level += int(monkeys[monkey_number]["operation"][1])
+                elif monkeys[monkey_number]["operation"][0] == "*":
+                    stress_level *= int(monkeys[monkey_number]["operation"][1])
+            stress_level = stress_level % divisor
+            div = int(monkeys[monkey_number]["test"])
+            if not stress_level % div:
+                next_monkey = int(monkeys[monkey_number]["true"])
+            else:
+                next_monkey = int(monkeys[monkey_number]["false"])
+            monkeys_inspected[monkey_number] += 1
+            m += 1
+            items[next_monkey].append(stress_level)
+    monkeys_inspected.sort()
+    return monkeys_inspected[-1]*monkeys_inspected[-2]
