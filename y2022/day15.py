@@ -69,13 +69,39 @@ class Map:
                 print(e)
         return count
 
+   
+
+def pokus_2(lines, main_y=10):
+    the_xs = []
+    occupied_xs = []
+    for line in lines:
+        sx, sy, bx, by = [int(j) for j in re.findall(r'\d+', line)]
+
+        if by == main_y:
+            occupied_xs.append(bx)
+            if bx in the_xs:
+                the_xs.remove(bx)
+        if sy == main_y:
+            if sx in the_xs:
+                the_xs.remove(sx)
+            occupied_xs.append(sx)
+        reach = int(abs(sy - by) + abs(sx - bx))
+
+        if main_y in range(sy - reach, sy + reach):
+            # how far is that? according to that shrink the row range
+            how_far = abs(main_y - sy)
+            for i in range((sx - reach) + how_far, (sx + reach + 1) - how_far):
+                if i not in the_xs and i not in occupied_xs:
+                    the_xs.append(i)
+    return len(the_xs)
 
 def part1():
     #TODO: make it... not O(x^x^x^x^x^x^x^x...)
-    m = Map(lines)
-    m.fill_empty()
-    m.print()
-    return m.get_not_beacon_spots(10)
+    #m = Map(lines)
+    #m.fill_empty()
+    #m.print()
+    return pokus2(lines, 2000000)
+    #return m.get_not_beacon_spots(10)
     # return m.get_not_beacon_spots(2000000)
 
 
