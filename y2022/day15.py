@@ -6,7 +6,7 @@ f.close()
 lines = [l.strip() for l in lines]
 
 
-def pokus_3(lines, main_y=10):
+def count_empty_places(lines, main_y=10):
     known = set()
     intervals = []
 
@@ -53,7 +53,7 @@ def pokus_3(lines, main_y=10):
 
 
 def part1():
-    return pokus_3(lines, 2000000)
+    return count_empty_places(lines, 2000000)
 
 
 def part2():
