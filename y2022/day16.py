@@ -10,58 +10,87 @@ lines = [s.strip() for s in lines]
 
 
 class Cave:
-    valves = []
+    closed_valves = []
+    open_valves = []
     queue = []
     starting_valve = "AA"
+    remaining_minutes = 30
+    total_flow = 0
+    current_valve = {}
+
+    def print_stats(self, current_valve, neighbours=[]):
+        print("-- Minute", 30 - self.remaining_minutes, "--")
+        # print("CV:", current_valve)
+        # for n in neighbours:
+        #    print("N:", n)
+        print("Valves", ", ".join([d['valve'] if d["flow"] > 0 else "" for d in self.open_valves]),
+              "are open, releasing", sum([d['flow'] for d in self.open_valves]), "pressure")
+        # print("I am in valve",self.current_valve["valve"])
 
     def __init__(self, lines):
         for line in lines:
-            valves = [j for j in re.findall(r'[A-Z][A-Z]', line)]
+            valve = [j for j in re.findall(r'[A-Z][A-Z]', line)]
             rate = int([j for j in re.findall(r'\d+', line)][0])
-            self.valves.append(
-                {"valve": valves[0], "flow": rate, "neighbours": valves[1:], "open": False, "max_flow": 0})
-            if valves[0] == self.starting_valve:
-                self.queue.append(self.valves.pop())
+            self.closed_valves.append(
+                {"valve": valve[0], "flow": rate, "neighbours": valve[1:]})
+            if valve[0] == self.starting_valve:
+                self.current_valve = self.closed_valves.pop()
+                self.queue.append(self.current_valve)
+                self.open_valves.append(self.current_valve)
 
-    def find_most_pressure_path(self, remaining_minutes=30):
+    def pokus2(self):
+        neighbours = []
+        while self.remaining_minutes > 0 or len(self.queue):
 
-        max_flow = 0
-        total_flow = 0
-        while remaining_minutes:
-            while len(self.queue):
-                print("-- Minute", 30 - remaining_minutes, "--")
+            self.print_stats(self.current_valve, neighbours)
+            try:
                 current_valve = self.queue.pop(-1)
-                current_valve["max_flow"] = max_flow + current_valve["flow"]
-
-                neighbours = [d for d in self.valves if d['valve'] in current_valve["neighbours"]]
-
+                neighbours = [d for d in self.closed_valves if d['valve'] in current_valve["neighbours"]]
+                sub_queue = []
+                # if self.current_valve["valve"] != self.starting_valve:
+                # TODO mmmm I need totally new approach. I can skip opening if it's not worth it.
+                if (current_valve["valve"] != self.starting_valve):
+                    self.move(current_valve)
                 for n in neighbours:
-                    # TODO add to queue ordered by flow
-                    if not n["open"]:
-                        self.queue.append(n)
-                        self.update(n["valve"], "open", True)
-                        self.update(n["valve"], "max_flow", max_flow + n["flow"])
-                    else:
-                        print("\tOpening valve",n["valve"])
-                max_flow = current_valve["max_flow"]
-                remaining_minutes -= 1
-                print("\treleasing", max_flow, "pressure")
-            # after we run out of valves we can open
+                    if n not in self.open_valves:
+                        sub_queue.append(n)
+                sub_queue = sorted(sub_queue, key=lambda d: d['flow'])
+                self.remaining_minutes -= 1
+                self.queue = sub_queue + self.queue
+            except IndexError:
+                self.total_flow += sum([d['flow'] for d in self.open_valves])
+                self.remaining_minutes -= 1
 
-            print("-- Minute", 30 - remaining_minutes, "--")
-            total_flow += max_flow
-            remaining_minutes -= 1
-            print("\treleasing", max_flow, "pressure")
-        return total_flow
+        self.print_stats([])
+        self.total_flow += sum([d['flow'] for d in self.open_valves])
+        return self.total_flow
+
+    def move(self, valve):
+        # MOVE
+
+        print("Moving to valve", valve["valve"])
+        self.current_valve = valve
+        self.total_flow += sum([d['flow'] for d in self.open_valves])
+        self.remaining_minutes -= 1
+        self.print_stats(valve)
+
+        # OPEN
+        if valve in self.closed_valves:
+            print("Opening valve", valve["valve"])
+            self.closed_valves.remove(valve)
+            self.open_valves.append(valve)
+            self.total_flow += sum([d['flow'] for d in self.open_valves])
+            self.remaining_minutes -= 1
+            self.print_stats(valve)
 
     def update(self, valve, key, new_value):
-        for d in self.valves:
+        for d in self.closed_valves + self.open_valves:
             d.update((key, new_value) for k, v in d.items() if v == valve)
 
 
 def part1():
     c = Cave(lines)
-    print(c.find_most_pressure_path())
+    print(c.pokus2())
     return 0
 
 
