@@ -19,7 +19,7 @@ if __name__ == "__main__":
             solving_year = args.pop()
             solving_days = args
         elif max(args) > 25 or min(args) < 1:
-            print(" Wrong arguments.")
+            print(" Wrong arguments. Use only numbers 1-25 and a year 2014-2023")
             exit()
 
         # days existing in AoC
@@ -28,7 +28,7 @@ if __name__ == "__main__":
         if (before_today and solving_year == today.year) or (before_christmas and solving_year != today.year):
             solving_days = args
         else:
-            print(" Wrong arguments.")
+            print(" Wrong arguments. Use only days for which AoC exists.")
             exit()
 
     # use only unique values
