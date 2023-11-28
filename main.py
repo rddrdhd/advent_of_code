@@ -18,7 +18,7 @@ if __name__ == "__main__":
         if existing_year:
             solving_year = args.pop()
             solving_days = args
-        elif max(args) > 25:
+        elif max(args) > 25 or min(args) < 1:
             print(" Wrong arguments.")
             exit()
 
@@ -39,7 +39,7 @@ if __name__ == "__main__":
         solving_date = str(solving_day).zfill(2) + ".12." + str(solving_year)
         print(solving_date, end=' - ')
 
-        if solving_year == 2022:
+        if solving_year == 2018 or solving_year == 2022 or solving_year == 2023:
             solving_day = str(solving_day).zfill(2)  # new naming
 
         try:
@@ -51,12 +51,15 @@ if __name__ == "__main__":
             except ValueError:
                 print("Results :\t\t", p1, ",\t", p2)
         except ModuleNotFoundError:
+            
             if 4 in solving_days and solving_year == 2021:
                 # file splitted into p1 and p2
-                    a = importlib.import_module("y" + str(solving_year) + ".day" + str(solving_day)+"p1")
-                    b = importlib.import_module("y" + str(solving_year) + ".day" + str(solving_day)+"p2")
+                    name="y" + str(solving_year) + ".day" + str(solving_day)
+                    a = importlib.import_module(name+"p1")
+                    b = importlib.import_module(name+"p2")
                     p1 = a.part1()
                     p2 = b.part2()
                     print("Results :\t\t{:13d},\t{:13d}".format(p1, p2))
             else:
                 print("\t\t\t This solution does not exist")
+    
