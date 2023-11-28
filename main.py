@@ -48,10 +48,9 @@ if __name__ == "__main__":
             p2 = a.part2()
             try:
                 print("Results :\t\t{:13d},\t{:13d}".format(p1, p2))
-            except ValueError:
+            except (ValueError, TypeError) :
                 print("Results :\t\t", p1, ",\t", p2)
         except ModuleNotFoundError:
-            
             if 4 in solving_days and solving_year == 2021:
                 # file splitted into p1 and p2
                     name="y" + str(solving_year) + ".day" + str(solving_day)
