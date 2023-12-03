@@ -16,13 +16,13 @@ def part1():
         row = lines[y]
 
         # for each number
-        for match in re.finditer('[0-9]+',row):
+        for match in re.finditer('\d+',row):
             has_neighbours = False
-            span = match.span()
+            x0, x1 = match.span()
 
-            # 8 neighbouring coordinates
-            neighbours_coords=[ [y+0,span[0]-1], [y+0,span[1]] ]
-            for i in range(span[0]-1, span[1]+1):
+            # neighbouring coordinates
+            neighbours_coords=[ [y,x0-1], [y,x1] ]
+            for i in range(x0-1, x1+1):
                 neighbours_coords.append([y+1,i])
                 neighbours_coords.append([y-1,i])
 
