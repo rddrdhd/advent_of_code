@@ -13,7 +13,7 @@ class Mapa:
         for a in arrays_of_numbers:
             destination_ranges.append(range(a[0], a[0]+a[2]))
             source_ranges.append(range(a[1], a[1]+a[2]))
-            
+
         self.destination_ranges = destination_ranges
         self.source_ranges = source_ranges
         self.count_rules = len(arrays_of_numbers)
@@ -27,11 +27,9 @@ class Mapa:
             string+="\n"
         return string
 
-
-def part1():
-    # init maps with rules
+def get_maps(lines):
     maps = []
-    rules =[]
+    rules = []
     for line in lines[3:]:
         nums = [int(x) for x in re.findall('\d+',line)]
         if nums:
@@ -40,6 +38,11 @@ def part1():
             mapa = Mapa(rules)
             rules = []
             maps.append(mapa)
+    return maps
+
+def part1():
+    # init maps with rules
+    maps = get_maps(lines)
     seeds = [int(x) for x in re.findall('\d+',lines[0])]
     new_seeds = []
     for map in maps:
@@ -58,6 +61,29 @@ def part1():
         new_seeds = []
     return min(seeds) # 251346198
 
+#WIP
 def part2():
-    total_score = 0
-    return total_score #
+    maps = get_maps(lines)
+    seed_ranges = []
+    for x in re.findall('\d+ \d+',lines[0]):
+        xs = x.split(" ")
+        seed_ranges.append(range(int(xs[0]),int(xs[0])+int(xs[1])))
+    print(seed_ranges)
+    new_seed_ranges = []
+    for map in maps:
+        for seed_range in seed_ranges:
+            range_found = False
+            i = 0
+            while not range_found and i < map.count_rules:
+                intersection = range(max(seed_range.start,map.source_ranges[i].start), min(seed_range.stop,map.source_ranges[i].stop)) or None
+                print(seed_range,"&",map.source_ranges[i],"\t->",end=" ")
+                if intersection:
+                    print(intersection)
+                else:
+                    print("no intersection")
+                i+= 1
+            if not range_found:
+                new_seed_ranges.append(seed_range)
+        seed_ranges = new_seed_ranges.copy()
+        new_seed_ranges = []
+    return 0
