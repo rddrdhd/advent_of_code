@@ -79,6 +79,9 @@ def part2():
                 print(seed_range,"&",map.source_ranges[i],"\t->",end=" ")
                 if intersection:
                     print(intersection)
+                    before_intersect = range(seed_range.start, intersection.start)
+                    after_intersect = range(seed_range.stop, intersection.stop)
+                    print(before_intersect, after_intersect)
                 else:
                     print("no intersection")
                 i+= 1
