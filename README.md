@@ -1,5 +1,5 @@
 # Advent of code
-Run `python3 main.py` to get today's riddle answer.
+Add your data to y20XX/data/dayXX.txt and run `python3 main.py` to get today's riddle answer.
 
 Optional arguments:
 - [int] year (number between 2015 and this year)
