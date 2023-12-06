@@ -7,6 +7,8 @@ f.close()
 lines = [s.strip() for s in lines]
 
 class Mapa:
+    # from array [50,98, 2] to source range(98..100) and destination range(50..52)
+    # from array [52,50,48] to source range(50..98)  and destination range(52..100)
     def __init__(self, arrays_of_numbers):
         destination_ranges = []
         source_ranges = []
@@ -40,8 +42,8 @@ def get_maps(lines):
             maps.append(mapa)
     return maps
 
+
 def part1():
-    # init maps with rules
     maps = get_maps(lines)
     seeds = [int(x) for x in re.findall('\d+',lines[0])]
     new_seeds = []
@@ -61,32 +63,42 @@ def part1():
         new_seeds = []
     return min(seeds) # 251346198
 
-#WIP
+
 def part2():
     maps = get_maps(lines)
-    seed_ranges = []
+    seed_rs = []
     for x in re.findall('\d+ \d+',lines[0]):
-        xs = x.split(" ")
-        seed_ranges.append(range(int(xs[0]),int(xs[0])+int(xs[1])))
-    print(seed_ranges)
-    new_seed_ranges = []
+        x_a = x.split(" ")
+        seed_rs.append(range(int(x_a[0]),int(x_a[0])+int(x_a[1])))
+
     for map in maps:
-        for seed_range in seed_ranges:
-            range_found = False
-            i = 0
-            while not range_found and i < map.count_rules:
-                intersection = range(max(seed_range.start,map.source_ranges[i].start), min(seed_range.stop,map.source_ranges[i].stop)) or None
-                print(seed_range,"&",map.source_ranges[i],"\t->",end=" ")
-                if intersection:
-                    print(intersection)
-                    before_intersect = range(seed_range.start, intersection.start)
-                    after_intersect = range(seed_range.stop, intersection.stop)
-                    print(before_intersect, after_intersect)
-                else:
-                    print("no intersection")
-                i+= 1
-            if not range_found:
-                new_seed_ranges.append(seed_range)
-        seed_ranges = new_seed_ranges.copy()
-        new_seed_ranges = []
-    return 0
+        new_seed_rs = []
+
+        while seed_rs:
+            seed_r = seed_rs.pop()
+
+            for i in range(map.count_rules):
+                dest_r = map.destination_ranges[i]
+                sour_r = map.source_ranges[i]
+
+                # intersection
+                inter_r = range(max(seed_r.start,sour_r.start),min(seed_r.stop,sour_r.stop))
+                if inter_r.start < inter_r.stop:
+                    diff = dest_r.start - sour_r.start
+                    # add the intersected part to the new round pile
+                    new_r = range(inter_r.start + diff, inter_r.stop + diff)
+                    new_seed_rs.append(new_r)
+                    # throw the rest back to the old round pile
+                    if seed_r.start < inter_r.start:
+                        seed_rs.append(range(seed_r.start, inter_r.start))
+                    if seed_r.stop > inter_r.stop:
+                        seed_rs.append(range(inter_r.stop, seed_r.stop))
+                    break 
+            else:
+                # ranges for which no rules were found
+                new_seed_rs.append(seed_r)  
+
+        seed_rs = new_seed_rs
+
+    sorted = [r.start for r in new_seed_rs]
+    return min(sorted) # 72263011
