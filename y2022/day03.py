@@ -24,14 +24,12 @@ def part1():
 
 def part2():
     sum = 0
-    print(len(lines))
     for i in range(0, len(lines) - 1, 3):
         f_third = lines[i]
         s_third = lines[i + 1]
         t_third = lines[i + 2]
         for ch in f_third:
             if ch in s_third and ch in t_third:
-                print(ch)
                 sum += priorities.rfind(ch) + 1
                 break
     # 2853 to neni

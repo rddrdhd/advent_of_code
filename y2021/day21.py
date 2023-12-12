@@ -1,5 +1,5 @@
-# Task: https://adventofcode.com/2021/day/20
-f = open('y2021/data/day20.txt', 'r')
+# Task: https://adventofcode.com/2021/day/21
+f = open('y2021/data/day21.txt', 'r')
 lines = f.readlines()
 f.close()
 lines = [s.strip() for s in lines]

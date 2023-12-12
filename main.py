@@ -51,14 +51,5 @@ if __name__ == "__main__":
             except (ValueError, TypeError) :
                 print("Results :\t\t", p1, ",\t", p2)
         except ModuleNotFoundError:
-            if 4 in solving_days and solving_year == 2021:
-                # file splitted into p1 and p2
-                    name="y" + str(solving_year) + ".day" + str(solving_day)
-                    a = importlib.import_module(name+"p1")
-                    b = importlib.import_module(name+"p2")
-                    p1 = a.part1()
-                    p2 = b.part2()
-                    print("Results :\t\t{:13d},\t{:13d}".format(p1, p2))
-            else:
-                print("\t\t\t This solution does not exist")
+            print("\t\t\t This solution does not exist")
     
