@@ -1,7 +1,7 @@
 # Task: https://adventofcode.com/2021/day/6
 import copy
 
-f = open('y2021/data/day6.txt', 'r')
+f = open('y2021/data/day06.txt', 'r')
 lines = f.readlines()
 f.close()
 

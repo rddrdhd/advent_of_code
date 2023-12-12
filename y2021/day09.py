@@ -1,7 +1,6 @@
 # Task: https://adventofcode.com/2021/day/9
-from typing import List
 
-f = open('y2021/data/day9.txt', 'r')
+f = open('y2021/data/day09.txt', 'r')
 lines = f.readlines()
 f.close()
 lines = [s.strip() for s in lines]

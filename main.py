@@ -39,8 +39,7 @@ if __name__ == "__main__":
         solving_date = str(solving_day).zfill(2) + ".12." + str(solving_year)
         print(solving_date, end=' - ')
 
-        if solving_year == 2018 or solving_year == 2022 or solving_year == 2023:
-            solving_day = str(solving_day).zfill(2)  # new naming
+        solving_day = str(solving_day).zfill(2)  # new naming
 
         try:
             a = importlib.import_module("y" + str(solving_year) + ".day" + str(solving_day))

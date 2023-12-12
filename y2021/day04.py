@@ -1,6 +1,6 @@
 # Task: https://adventofcode.com/2021/day/4
 
-f = open('y2021/data/day4.txt', 'r')
+f = open('y2021/data/day04.txt', 'r')
 lines = f.readlines()
 f.close()
 

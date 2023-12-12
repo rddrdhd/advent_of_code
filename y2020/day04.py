@@ -1,6 +1,6 @@
 # Task: https://adventofcode.com/2020/day/4
 
-f = open('y2020/data/day4.txt', mode='r')
+f = open('y2020/data/day04.txt', mode='r')
 lines = f.read().split('\n\n')
 f.close()
 def part1():

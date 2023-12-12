@@ -18,7 +18,6 @@ def part2():
     size = len(lines)
     while not found and i < 10000:
         freq += lines[i] 
-        print(i)
         if freq in reached:
             i+=1
             found=True
