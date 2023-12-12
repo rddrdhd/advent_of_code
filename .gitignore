@@ -1,7 +1,6 @@
 __pycache__/
 .idea/
-*/data/*
-y2021/dayX.py
+*/dayX.py
 win_venv/
 ubu_venv/
 kar_venv/
