@@ -29,28 +29,28 @@ def count_possible_arrangements(row, groups):
 
     curr_group_size = groups[0]
     the_rest_of_groups = groups[1:]
-    if (    (curr_spring == DAMAGED or curr_spring == UNKNOWN)
+    if ((curr_spring == DAMAGED or curr_spring == UNKNOWN)
+        and OPERATIONAL not in row[:curr_group_size]
         and curr_group_size <= len(row)
-        and OPERATIONAL not in row[: curr_group_size]
-        and (curr_group_size == len(row) or row[curr_group_size] != DAMAGED) ):
+        and (curr_group_size == len(row) or row[curr_group_size] != DAMAGED)):
             
-            result += count_possible_arrangements(row[curr_group_size + 1 :], the_rest_of_groups)
+            result += count_possible_arrangements(row[curr_group_size+1:], the_rest_of_groups)
 
     return result
 
 def part1():
-    total = 0
+    sum = 0
     for line in lines:
         row, groups = line.split()
         groups = tuple(int(x) for x in groups.split(","))
-        total += count_possible_arrangements(row, groups)
-    return total
+        sum += count_possible_arrangements(row, groups)
+    return sum
 
 def part2():
-    total = 0
+    sum = 0
     for line in lines:
         pattern, counts = line.split()
         pattern = "?".join([pattern] * 5)
         counts = tuple(int(x) for x in counts.split(",")) * 5
-        total += count_possible_arrangements(pattern, counts)
-    return total
+        sum += count_possible_arrangements(pattern, counts)
+    return sum
