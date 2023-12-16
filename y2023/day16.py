@@ -15,18 +15,17 @@ class Contraption:
         for line in lines:
             self.rows.append(line)
         self.energized = []
-        self.beams = []
+        self.beams_shot = []
 
     def get_reflection_direction(self, direction, char):
         if (direction == RIGHT and char == "/") or (direction == LEFT and char == "\\"):
-            direction = UP
-        elif (direction == RIGHT and char == "\\") or (direction == LEFT and char == "/"):
-            direction = DOWN
-        elif (direction == DOWN and char == "/") or direction == UP and char == "\\":
-            direction = LEFT
-        elif (direction == DOWN and char == "\\") or (direction == UP and char == "/"):
-            direction = RIGHT
-        return direction
+            return UP
+        if (direction == RIGHT and char == "\\") or (direction == LEFT and char == "/"):
+            return DOWN
+        if (direction == DOWN and char == "/") or direction == UP and char == "\\":
+            return LEFT
+        if (direction == DOWN and char == "\\") or (direction == UP and char == "/"):
+            return RIGHT
     
     def print(self):
         print("")
@@ -38,17 +37,16 @@ class Contraption:
                     print(self.rows[y][x],end="")
             print("")
 
-    def shoot(self, y, x, direction, ttl = 100):
-        ttl -= 1 # just in case, shouldn't matter
+    def shoot(self, y, x, direction):
 
         # only if the ray was not fired this way yet
-        if not [y, x, direction] in self.beams:
-            # add ray fired
-            self.beams.append([y, x , direction])
+        if not [y, x, direction] in self.beams_shot:
+
+            # add this ray
+            self.beams_shot.append([y, x , direction])
             
             # while in bounds of contraption
-            while (ttl > 0 
-                   and 0 <= y < len(self.rows) 
+            while (0 <= y < len(self.rows) 
                    and 0 <= x < len(self.rows[0]) ):
 
                 if (y, x) not in self.energized:
@@ -64,19 +62,21 @@ class Contraption:
                    
                 elif char in ("/","\\"): 
                     # mirror -> reflection
+                    # change the direction of this ray
                     direction = self.get_reflection_direction(direction, char)
 
                 else:  
                     # splitter -> refraction
+                    # start two new rays and end this one
                     if char == "-":
-                        self.shoot(y, x-1, LEFT, ttl)
-                        self.shoot(y, x+1, RIGHT, ttl)
+                        self.shoot(y, x-1, LEFT)
+                        self.shoot(y, x+1, RIGHT)
                         return
                     else:
-                        self.shoot(y-1, x, UP, ttl)
-                        self.shoot(y+1, x, DOWN, ttl)
+                        self.shoot(y-1, x, UP)
+                        self.shoot(y+1, x, DOWN)
                         return
-                    # shoot two
+                    
                 if direction == RIGHT:
                     x+=1
                 elif direction == DOWN:
@@ -111,17 +111,13 @@ def part2():
     ⠄⠄⠄⠄⠄⠄⢀⣤⣾⣿⣿⣿⣿⣿⣿⣶⣬⣝⣛⡛⠿⠿⠿⠿⠿⢟⣛⣩⣤⣄                      
     '''
     for x, way in [(0, RIGHT), (max_width, LEFT)]:
-        for y in range(len(lines)):
+        for y in range(max_height):
             c = Contraption(lines)
             c.shoot(y, x, way)
-            score = len(c.energized)
-            del c
-            max_score = max(score, max_score)
-    for y, way in [(0, DOWN),(max_height, UP)]:
-        for x in range(len(lines[0])):
+            max_score = max(len(c.energized), max_score)
+    for y, way in [(0, DOWN), (max_height, UP)]:
+        for x in range(max_width):
             c = Contraption(lines)
             c.shoot(y, x, way)
-            score = len(c.energized)
-            del c
-            max_score = max(score, max_score)
+            max_score = max(len(c.energized), max_score)
     return max_score # 6701
