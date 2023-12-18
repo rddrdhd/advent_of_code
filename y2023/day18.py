@@ -30,8 +30,8 @@ def get_border_and_corners(lines, second_part=False):
             dy, dx = NEIGHTBOURS[direction]
             count = int(hex[:-1], 16)
         border += count
-        y,x = corners[-1]
-        corners.append((y+ dy*count, x+dx*count))
+        y, x = corners[-1]
+        corners.append((y+dy*count, x+dx*count))
     return border, corners
 
 def get_full_area(border, corners):
