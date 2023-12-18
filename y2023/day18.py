@@ -16,17 +16,6 @@ UP = 'U'
 
 NEIGHTBOURS = {RIGHT:(0,1), DOWN:(1, 0), LEFT:(0,-1), UP:(-1, 0)}
 
-def get_full_area(border, corners):
-    crosses = 0
-    for i in range(len(corners)):
-        curr_x= corners[i][X]
-        prev_y = corners[i - 1][Y]
-        next_y = corners[(i + 1) % len(corners)][Y]
-        crosses += curr_x * (prev_y - next_y)
-    shoelace = abs(crosses) / 2
-    area = shoelace - border / 2 
-    return int(area + border + 1) 
-
 def get_border_and_corners(lines, second_part=False):
     corners = [(0,0)]
     border = 0
@@ -44,6 +33,17 @@ def get_border_and_corners(lines, second_part=False):
         y,x = corners[-1]
         corners.append((y+ dy*count, x+dx*count))
     return border, corners
+
+def get_full_area(border, corners):
+    crosses = 0
+    for i in range(len(corners)):
+        curr_x= corners[i][X]
+        prev_y = corners[i - 1][Y]
+        next_y = corners[(i + 1) % len(corners)][Y]
+        crosses += curr_x * (prev_y - next_y)
+    shoelace = abs(crosses) / 2
+    area = shoelace - border / 2 
+    return int(area + border + 1) 
 
 def part1():
     border, corners = get_border_and_corners(lines, second_part=False)
