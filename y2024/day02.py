@@ -6,55 +6,47 @@ f.close()
 lines = [s.strip() for s in lines]
 
 
-def part1():
-    sum = 0
-    for line in lines:
-        passing = True
-        nums = [int(x) for x in line.split()]
-        s1, s2 = sorted(nums,reverse=False), sorted(nums,reverse=True)
-        if s1==nums or s2==nums:
-            for i in range(1, len(nums)):
-                diff = abs(nums[i-1]-nums[i])
-                if not 1<=diff<=3:
-                    passing = False
-        else:
-            passing = False
-            
-        if passing:
-            sum+=1
-    return sum
 
-def is_sequence_tolerable(nums):
-    s1, s2 = sorted(nums), sorted(nums, reverse=True)
-    if nums != s1 and nums != s2:  # Check if sorted
+def is_seq_safe(seq):
+    s1, s2 = sorted(seq), sorted(seq, reverse=True)
+    if seq != s1 and seq != s2:  # Check if sorted
         return False
 
     # Check differences
-    for i in range(1, len(nums)):
-        diff = abs(nums[i] - nums[i - 1])
+    for i in range(1, len(seq)):
+        diff = abs(seq[i] - seq[i - 1])
         if not 1 <= diff <= 3:
             return False
 
     return True
 
 
-def is_tolerable_pass(nums):
-    new_lists = [nums[:i] + nums[i+1:] for i in range(len(nums))]
-    for candidate in new_lists:
-        if is_sequence_tolerable(candidate):
+def is_subseq_safe(seq):
+    new_lists = [seq[:i] + seq[i+1:] for i in range(len(seq))]
+    for subseq in new_lists:
+        if is_seq_safe(subseq):
             return 1
     return 0
 
 
-def part2():
-    total = 0
+def part1():
+    sum = 0
     for line in lines:
-        nums = [int(x) for x in line.split()]
-        if is_sequence_tolerable(nums):
-            total += 1
+        seq = [int(x) for x in line.split()]
+        if is_seq_safe(seq):
+            sum += 1
+    return sum
+
+
+def part2():
+    sum = 0
+    for line in lines:
+        seq = [int(x) for x in line.split()]
+        if is_seq_safe(seq):
+            sum += 1
         else:
-            total += is_tolerable_pass(nums)
-    return total
+            sum += is_subseq_safe(seq)
+    return sum
 
 if __name__ == "__main__":
     print()
