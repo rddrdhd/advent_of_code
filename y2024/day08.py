@@ -1,4 +1,4 @@
-#Task: https://adventofcode.com/2024/day/1
+#Task: https://adventofcode.com/2024/day/8
 f = open('y2024/data/day08.txt', 'r')
 lines = f.readlines()
 f.close()
