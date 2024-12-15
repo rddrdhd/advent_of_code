@@ -10,7 +10,7 @@ TEST_SIZE = (11,7)
 PROD_SIZE = (101,103)
 
 
-def part1(num_of_s, visual):
+def part1(num_of_s=100, visual=False):
     size = PROD_SIZE
     robots = []
     quadrants = [0, 0, 0, 0]
@@ -57,7 +57,7 @@ def part2():
 
 if __name__ == "__main__":
     print()
-    print("P1",part1(100, False)) # 224438715
+    print("P1",part1()) # 224438715
     print("P2",part2()) # 7603
 
     # change this to test the visuals. Comment the inner "if" to go second-by-second.
@@ -70,7 +70,7 @@ if __name__ == "__main__":
         
         num_of_s =0
         while True:
-            if (num_of_s - 28) % 101 == 0 and (num_of_s - 84) % 103==0:
+            if (num_of_s - 28) % 101 == 0 or (num_of_s - 84) % 103==0:
                 print(num_of_s)
                 part1(num_of_s, True)
                 input("Press Enter to continue...")
