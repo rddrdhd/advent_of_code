@@ -1,12 +1,10 @@
 #Task: https://adventofcode.com/2024/day/13
-import re
 # Reading input data
 f = open('y2024/data/day13.txt', 'r')
 lines = f.readlines()
 f.close()
 
 lines = [s.strip() for s in lines]
-
 
 
 def solve(part_two=False):
@@ -23,7 +21,7 @@ def solve(part_two=False):
         btn_b = [int(item[2:]) for item in line_b]
 
         line_prize = prize.split(": ")[1].split(", ")
-        
+
         if not part_two:
             prize = [int(item[2:]) for item in line_prize]
         else:
