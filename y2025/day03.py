@@ -16,7 +16,7 @@ def max_battery_chain(joltages, num_of_batteries):
             if i >= j:
                 candidate = matrix[i - 1][j - 1] * 10 + digit
                 matrix[i][j] = max(matrix[i][j], candidate)
-    return matrix[n][num_of_batteries]
+    return matrix[-1][-1]
 
 def part1():
     sum = 0
