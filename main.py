@@ -1,5 +1,6 @@
 import importlib
 import sys
+import time
 from datetime import datetime
 
 if __name__ == "__main__":
@@ -18,12 +19,13 @@ if __name__ == "__main__":
         if existing_year:
             solving_year = args.pop()
             solving_days = args
-        elif max(args) > 25 or min(args) < 1:
-            print(" Wrong arguments. Use only numbers 1-25 and a year 2014-2023")
+        elif max(args) > 25 or min(args) < 1 :
+            print(" Wrong arguments. Use only numbers 1-25 and a year 2014-2025")
             exit()
 
         # days existing in AoC
-        before_christmas = 0 < max(args) < 26 and 0 < min(args) < 26
+        last_day = 25 if solving_year < 2025 else 12
+        before_christmas = 0 < max(args) < last_day+1 and 0 < min(args) < last_day+1
         before_today = 0 < max(args) <= today.day and 0 < min(args) <= today.day
         if (before_today and solving_year == today.year) or (before_christmas and solving_year != today.year):
             solving_days = args
@@ -34,21 +36,38 @@ if __name__ == "__main__":
     # use only unique values
     solving_days = list(set(solving_days))
 
-    # import module and print
-    for solving_day in solving_days:
-        solving_date = str(solving_day).zfill(2) + ".12." + str(solving_year)
-        print(solving_date, end=' - ')
+    print(f"{'Date':<12}      {'Part 1':>16} {'Part 2':>16}     |{'Time P1':>8} {'Time P2':>8}")
+    print("-" * 80)
 
-        solving_day = str(solving_day).zfill(2)  # new naming
+    for solving_day in solving_days:
+        solving_year_str = str(solving_year)
+        day_str = str(solving_day).zfill(2)
+        solving_date = f"{day_str}.12.{solving_year_str}"
+        
+        print(f"{solving_date} - ", end='')
 
         try:
-            a = importlib.import_module("y" + str(solving_year) + ".day" + str(solving_day))
+            module_name = f"y{solving_year_str}.day{day_str}"
+            a = importlib.import_module(module_name)
+
+            t0 = time.perf_counter()
             p1 = a.part1()
+            t1 = time.perf_counter()
+            time_p1 = t1 - t0
+
+            t0 = time.perf_counter()
             p2 = a.part2()
-            try:
-                print("Results :\t\t{:13d},\t{:13d}".format(p1, p2))
-            except (ValueError, TypeError) :
-                print("Results :\t\t", p1, ",\t", p2)
+            t1 = time.perf_counter()
+            time_p2 = t1 - t0
+
+            out_p1 = str(p1)
+            out_p2 = str(p2)
+            
+            print(f"Results: {out_p1:>16} {out_p2:>16} | {time_p1:6.4f}s {time_p2:6.4f}s")
+
         except ModuleNotFoundError:
-            print("\t\t\t This solution does not exist")
-    
+            print(f"Results: {'(No Solution)':>16} {'-':>16} | {'-':>7}  {'-':>7}")
+        except Exception as e:
+            # Catch other errors (like code failing) to keep the loop running
+            print(f"Error: {str(e)}")
+        
